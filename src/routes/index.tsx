@@ -1,23 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+import gameShell from "../game/shell.html?raw";
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+// The game is a prebuilt single-page app living in public/ufm. "/" serves its own HTML shell
+// (title, description and social tags included) instead of rendering a React page here.
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ultimate Football Manager — Futbol Menajerlik Simülasyonu" },
+      {
+        name: "description",
+        content:
+          "17 ligden bir kulüp seç: Süper Lig, Premier Lig, LaLiga, Brasileirão, MLS ve fazlası. Dünya Kupası, EURO ve Uluslar Ligi.",
+      },
+      { property: "og:title", content: "Ultimate Football Manager" },
+      {
+        property: "og:description",
+        content: "Kadro, taktik kartları, transfer, milli turnuvalar ve canlı 2D maçlar — futbol menajerlik oyunu.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  server: {
+    handlers: {
+      GET: async () =>
+        new Response(gameShell, {
+          headers: {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-cache",
+          },
+        }),
+    },
+  },
+  component: () => null,
+});

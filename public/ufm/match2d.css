@@ -1,0 +1,77 @@
+.m2d-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem 1rem;border-bottom:1px solid var(--border)}
+.m2d-title{display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-foreground)}
+.m2d-live{width:.5rem;height:.5rem;border-radius:9999px;background:var(--muted-foreground);opacity:.5}
+.m2d-live.is-on{background:#ef4444;opacity:1;animation:m2d-pulse 1.2s ease-in-out infinite}
+.m2d-clock{font-family:"Barlow Condensed",sans-serif;font-size:.95rem;letter-spacing:.05em;color:var(--foreground);font-variant-numeric:tabular-nums}
+.m2d-stage{position:relative;background:#185f2d}
+.m2d-svg{display:block;width:100%;height:auto;user-select:none}
+.m2d-num,.m2d-label{font-family:"Barlow Condensed",sans-serif;pointer-events:none}
+.m2d-card{animation:m2d-pop .35s ease-out}
+.m2d-overlay{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding-top:.75rem;pointer-events:none;animation:m2d-fade 2.4s ease forwards}
+.m2d-flash{position:absolute;inset:0;animation:m2d-flash 1.2s ease-out forwards}
+.m2d-banner{position:relative;display:flex;flex-direction:column;align-items:center;padding:.35rem 1.1rem;border-radius:.5rem;border-bottom:3px solid;background:rgba(10,12,16,.82);color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.35);animation:m2d-drop .4s cubic-bezier(.2,1.4,.4,1)}
+.m2d-banner-title{font-family:"Barlow Condensed",sans-serif;font-size:1.6rem;font-weight:800;line-height:1;letter-spacing:.04em}
+.m2d-overlay--goal .m2d-banner-title{font-size:2.2rem}
+.m2d-banner-sub{font-size:.75rem;opacity:.85;margin-top:.15rem}
+.m2d-foot{display:grid;gap:.5rem;padding:.6rem 1rem;border-top:1px solid var(--border)}
+.m2d-teams{display:grid;grid-template-columns:1fr minmax(6rem,1.2fr) 1fr;align-items:center;gap:.75rem}
+.m2d-team{display:flex;align-items:center;gap:.45rem;font-weight:600;font-size:.875rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m2d-team b{font-family:"Barlow Condensed",sans-serif;font-size:1.4rem;line-height:1}
+.m2d-team--away{justify-content:flex-end}
+.m2d-swatch{display:inline-block;flex:none;width:.8rem;height:.8rem;border-radius:9999px;border:2px solid}
+.m2d-poss{position:relative;display:flex;height:.5rem;border-radius:9999px;overflow:hidden;background:var(--muted)}
+.m2d-poss span{transition:width .8s ease}
+.m2d-poss em{position:absolute;top:.6rem;left:0;right:0;text-align:center;font-size:.65rem;font-style:normal;color:var(--muted-foreground)}
+.m2d-teams{padding-bottom:.5rem}
+.m2d-ticker{display:flex;gap:.5rem;align-items:baseline;font-size:.8rem;color:var(--muted-foreground);min-height:1.2rem}
+.m2d-ticker-min{flex:none;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
+@keyframes m2d-pulse{50%{opacity:.35}}
+@keyframes m2d-pop{from{transform:scale(0);transform-origin:center}to{transform:scale(1)}}
+@keyframes m2d-drop{from{transform:translateY(-12px) scale(.9);opacity:0}to{transform:none;opacity:1}}
+@keyframes m2d-flash{from{opacity:1}to{opacity:0}}
+@keyframes m2d-fade{0%,80%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.m2d *{animation:none!important}}
+
+/* ---------- Kaiser match view: scoreboard, stadium, tilted pitch, speed buttons ---------- */
+.m2d--kaiser{background:var(--k-panel)!important;border-color:var(--k-line,#23242e)}
+.m2d-board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:.75rem;padding:.7rem 1rem;background:var(--k-panel);border-bottom:1px solid var(--k-line,#23242e)}
+.m2d-bteam{display:flex;align-items:center;gap:.55rem;min-width:0}
+.m2d-bteam--away{justify-content:flex-end;text-align:right}
+.m2d-bname{font-family:var(--font-heading,"Anton");font-size:clamp(.95rem,2.6vw,1.35rem);letter-spacing:.02em;text-transform:uppercase;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m2d-kit{flex:none;width:.4rem;height:1.6rem;border-radius:2px}
+.m2d-bscore{display:flex;align-items:center;gap:.6rem;padding:.2rem .7rem;border-radius:.55rem;background:var(--k-panel2);box-shadow:inset 0 0 0 1px var(--k-line2,#31323f)}
+.m2d-bscore b{font-family:var(--font-heading,"Anton");font-weight:400;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums;color:var(--k-ink,#f5f3ee);min-width:1.2ch;text-align:center}
+.m2d-bclock{font-family:var(--font-mono,"Space Mono");font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--k-ink);padding:.15rem .4rem;border-radius:.3rem;background:color-mix(in oklab,var(--k-ink) 8%,transparent)}
+.m2d-bclock.is-live{color:var(--k-on-acc);background:var(--k-acc)}
+.m2d--kaiser .m2d-stage{position:relative;aspect-ratio:16/9;background:#07080c center 42%/cover no-repeat;overflow:hidden;display:grid;place-items:center}
+.m2d--kaiser .m2d-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 35%,rgba(5,6,9,.55) 100%);pointer-events:none}
+.m2d-tilt{position:relative;width:74%;transform:perspective(1100px) rotateX(32deg);transform-origin:50% 62%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));margin-top:4%}
+.m2d--kaiser .m2d-svg{border-radius:4px}
+.m2d-venue{position:absolute;top:.6rem;left:.75rem;z-index:2;font-family:var(--font-mono,"Space Mono");font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,243,238,.75);text-shadow:0 1px 2px #000}
+.m2d-num{font-family:var(--font-mono,"Space Mono"),monospace!important}
+.m2d-bar{display:flex;align-items:center;gap:.75rem;padding:.55rem 1rem;border-top:1px solid var(--k-line,#23242e);flex-wrap:wrap}
+.m2d-bar .m2d-poss{flex:1;min-width:8rem}
+.m2d-speed{display:flex;gap:.25rem;align-items:center}
+.m2d-speed button{appearance:none;font-family:var(--font-mono,"Space Mono");font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:.3rem .5rem;border-radius:.35rem;border:1px solid var(--k-line2,#31323f);background:var(--k-panel2,#171826);color:var(--k-ink,#f5f3ee);cursor:pointer}
+.m2d-speed button:hover{border-color:var(--k-ink)}
+.m2d-speed button.is-on{background:var(--k-acc);border-color:var(--k-acc);color:var(--k-on-acc)}
+.m2d-speed .m2d-replay{display:inline-grid;place-items:center;padding:.25rem .45rem}
+.m2d-speed .m2d-replay svg{width:.9rem;height:.9rem}
+.m2d--kaiser .m2d-ticker{padding:.55rem 1rem .7rem;margin:0;border-top:1px solid var(--k-line,#23242e);font-size:.82rem}
+.m2d--kaiser .m2d-ticker-min{font-family:var(--font-mono,"Space Mono");color:var(--k-ink)}
+/* GOAL overlay */
+.m2d--kaiser .m2d-overlay{align-items:center;padding-top:0;z-index:3}
+.m2d--kaiser .m2d-banner{background:transparent;box-shadow:none;border:0;padding:0;animation:m2d-slam .5s cubic-bezier(.2,1.5,.4,1)}
+.m2d--kaiser .m2d-banner-title{font-family:var(--font-heading,"Anton");font-weight:400;font-size:clamp(2.2rem,9vw,4.5rem);letter-spacing:.02em;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.4),0 0 40px rgba(0,0,0,.6);-webkit-text-stroke:1px rgba(0,0,0,.25)}
+.m2d--kaiser .m2d-overlay--goal .m2d-banner-title{font-size:clamp(3.2rem,13vw,7rem);color:#fff;text-shadow:0 5px 0 #000,0 0 50px rgba(0,0,0,.75)}
+.m2d--kaiser .m2d-banner-sub{font-family:var(--font-mono,"Space Mono");font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(7,8,11,.82);padding:.25rem .6rem;border-radius:.3rem;margin-top:.35rem}
+.m2d-banner-team{font-family:var(--font-heading,"Anton");font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;margin-top:.3rem;color:#fff;text-shadow:0 2px 6px #000}
+@keyframes m2d-slam{0%{transform:scale(2.4);opacity:0}60%{transform:scale(.94);opacity:1}100%{transform:scale(1)}}
+@media (max-width:40rem){.m2d-tilt{width:94%;transform:perspective(800px) rotateX(24deg);margin-top:2%}.m2d--kaiser .m2d-stage{aspect-ratio:4/3}.m2d-board{padding:.55rem .6rem;gap:.4rem}.m2d-kit{display:none}}
+/* ---------- stadium bowl (top-down plan from plus-ext stadiumPlan, tilted with the pitch) ---------- */
+/* plan box [-30,135]x[-36,80] m vs svg viewBox [-4,109]x[-4,72] m */
+.m2d--kaiser .m2d-stage--bowl{background:radial-gradient(ellipse at 50% 30%,#1b2233 0%,#07080c 70%);aspect-ratio:16/10}
+.m2d-stage--bowl .m2d-tilt{width:60%;margin-top:9%;transform:perspective(1000px) rotateX(38deg);filter:none}
+.m2d-bowl{position:absolute;left:-23.009%;top:-42.105%;width:146.018%;height:152.632%;max-width:none;pointer-events:none;user-select:none;box-shadow:0 30px 60px rgba(0,0,0,.6);border-radius:3%}
+.m2d-stage--bowl .m2d-svg{position:relative;z-index:1}
+@media (max-width:40rem){.m2d-stage--bowl .m2d-tilt{width:70%;margin-top:12%;transform:perspective(700px) rotateX(30deg)}.m2d--kaiser .m2d-stage--bowl{aspect-ratio:4/3.4}}
