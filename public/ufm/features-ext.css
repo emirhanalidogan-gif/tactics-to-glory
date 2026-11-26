@@ -1,0 +1,34 @@
+/* Tactical/media extensions — all colours come from the active club and Kaiser tokens. */
+.fm-card{display:grid;gap:1rem;padding:1.1rem;border:1px solid var(--k-line);border-radius:1rem;background:color-mix(in oklab,var(--k-panel) 96%,transparent);box-shadow:var(--k-shadow)}
+.fm-card h2{margin:0;font-family:var(--font-heading);font-weight:400;font-size:1.45rem;line-height:1.05;text-transform:uppercase;color:var(--k-ink)}
+.fm-head{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.fm-kicker{margin:0 0 .3rem;font-family:var(--font-mono);font-size:.64rem;font-weight:700;letter-spacing:.17em;color:var(--club-1,var(--k-acc))}
+.fm-analysis-grid{display:grid;gap:1rem;grid-template-columns:1.4fr 1fr}
+.fm-scout{padding:.75rem;border-radius:.65rem;background:var(--k-panel2);font-size:.82rem;color:var(--k-mut)}
+.fm-scout p{margin:.2rem 0}.fm-scout b{color:var(--k-ink)}
+.fm-key-players{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.45rem}.fm-key-players>span{display:inline-flex;align-items:center;gap:.35rem;color:var(--k-ink);font-weight:600}
+.fm-odds{display:grid;place-content:center;text-align:center;padding:.8rem;border-radius:.65rem;background:color-mix(in oklab,var(--club-1,var(--k-acc)) 12%,var(--k-panel2));border:1px solid color-mix(in oklab,var(--club-1,var(--k-acc)) 40%,transparent)}
+.fm-odds b{font-family:var(--font-heading);font-weight:400;font-size:2.5rem;line-height:1;color:var(--k-ink)}.fm-odds span{font-size:.78rem;color:var(--k-ink)}.fm-odds small{max-width:15rem;margin-top:.4rem;color:var(--k-mut);font-size:.68rem;line-height:1.35}
+.fm-plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.5rem}
+.fm-plan{appearance:none;display:grid;gap:.3rem;align-content:start;text-align:left;padding:.7rem;border:1px solid var(--k-line2);border-radius:.65rem;background:var(--k-panel2);color:var(--k-ink);font:inherit;cursor:pointer;transition:border-color .15s,transform .15s}
+.fm-plan:hover{border-color:var(--club-1,var(--k-ink));transform:translateY(-1px)}.fm-plan.is-on{border-color:var(--club-1,var(--k-acc));box-shadow:inset 0 0 0 2px var(--club-1,var(--k-acc))}
+.fm-plan b{font-family:var(--font-heading);font-weight:400;font-size:.95rem;text-transform:uppercase}.fm-plan span{font-size:.72rem;line-height:1.35;color:var(--k-mut)}.fm-plan em{font-family:var(--font-mono);font-style:normal;font-size:.59rem;font-weight:700;letter-spacing:.08em;color:var(--club-1,var(--k-acc))}
+.fm-applied{margin:0;padding:.55rem .7rem;border-radius:.5rem;background:color-mix(in oklab,var(--k-green) 12%,transparent);color:var(--k-green);font-size:.8rem;font-weight:600}
+.fm-activities{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}.fm-activities button{appearance:none;display:grid;gap:.4rem;padding:1rem;text-align:left;border:1px solid var(--k-line2);border-radius:.75rem;background:var(--k-panel2);color:var(--k-ink);font:inherit;cursor:pointer}.fm-activities button:hover{border-color:var(--club-1,var(--k-acc))}.fm-activities b{font-size:.95rem}.fm-activities span,.fm-activity-done span{font-family:var(--font-mono);font-size:.7rem;color:var(--k-mut)}
+.fm-activity-done{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding:.8rem;border-radius:.6rem;background:color-mix(in oklab,var(--k-green) 10%,var(--k-panel2))}
+.fm-hint{margin:0;color:var(--k-mut);font-size:.72rem}
+.fm-intl-fixtures{margin-top:1.5rem}.fm-intl-fixtures ol{list-style:none;padding:0;margin:0;display:grid;gap:.35rem}.fm-intl-fixtures li{display:grid;grid-template-columns:1fr 1fr 4rem 1.6fr;gap:.6rem;align-items:center;padding:.55rem .7rem;border-radius:.5rem;background:var(--k-panel2);font-size:.8rem}.fm-intl-fixtures li>span{color:var(--k-mut)}.fm-intl-fixtures em{font-family:var(--font-heading);font-style:normal;font-size:1.1rem;text-align:center}.fm-intl-fixtures small{color:var(--k-mut);text-align:right}
+/* A low-contrast diagonal crest pattern behind the club-coloured home. */
+.px-home::after{content:"";position:fixed;inset:5rem 0 0;z-index:-2;pointer-events:none;opacity:.032;background-image:var(--club-pattern);background-size:12rem 12rem;background-repeat:repeat;transform:rotate(-12deg) scale(1.2)}
+.px-home::before{opacity:.55}
+/* Match view uses the available viewport instead of the narrow reading column. */
+main:has(.ce-live){max-width:100%;padding:.6rem 1rem 1rem}
+.ce-live.fm-live{display:block;min-height:0}
+.ce-live.fm-live>.ce-live-main{max-width:calc((100svh - 9rem)*16/9);margin:0 auto;display:grid;gap:.45rem}
+.ce-live.fm-live .m2d--kaiser{width:100%;box-shadow:0 18px 60px rgba(0,0,0,.45)}
+.ce-live.fm-live .m2d-stage--bowl{aspect-ratio:16/9}
+.ce-live.fm-live .m2d-stage--bowl .m2d-tilt{width:66%;margin-top:6%}
+.ce-live.fm-live .m2d-ticker{max-height:3.2rem;overflow:hidden}
+@media(min-width:64rem){.ce-live.fm-live>.ce-live-main{max-width:calc((100svh - 7rem)*16/9)}.ce-live.fm-live .m2d-stage--bowl .m2d-tilt{width:64%}}
+@media(max-width:48rem){main:has(.ce-live){padding:.25rem}.fm-analysis-grid{grid-template-columns:1fr}.fm-activities{grid-template-columns:1fr}.fm-intl-fixtures li{grid-template-columns:1fr auto}.fm-intl-fixtures li>span,.fm-intl-fixtures li>small{display:none}.ce-live.fm-live .m2d-stage--bowl{aspect-ratio:4/3}.ce-live.fm-live .m2d-stage--bowl .m2d-tilt{width:78%;margin-top:10%}}
+@media(prefers-reduced-motion:reduce){.fm-plan{transition:none}}
